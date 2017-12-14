@@ -1,0 +1,127 @@
+﻿@model id.volam.club.Models.RegisterModel
+
+@{
+    ViewBag.Title = "Đăng ký tài khoản";
+}
+
+@using (Html.BeginForm("register", "account"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="text-center">ĐĂNG KÝ TÀI KHOẢN</h3>
+        </div>
+        <div class="panel-body" style="padding-left:0;padding-right:0">
+            <form action="/account/register">
+                <div class="form-horizontal">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 class="text-center">
+                                @Html.ValidationMessage("Error", new { @class = "text-danger" })
+                                @Html.ValidationMessage("Success", new { @class = "text-success" })
+                            </h4>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="panel panel-default" style="border-right:0;border-left: 0; border-bottom:0">
+                                <div class="panel-heading">
+                                    <h4 style="text-transform: uppercase;">Thông tin tài khoản</h4>
+                                </div>
+                                <div class="panel-body" style="padding-left:0;padding-right:0">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4" for="cAccName">Tài khoản:</label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.cAccName, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.cAccName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4" for="cAccName">Mật khẩu:</label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.cPassWord, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.cPassWord, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4" for="cAccName">Nhập lại Mật khẩu:</label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.cRePassWord, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.cRePassWord, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4" for="cAccName">Mật khẩu cấp 2:</label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.cSecPassWord, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.cSecPassWord, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4" for="cAccName">Nhập lại Mật khẩu cấp 2:</label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.cReSecPassWord, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.cReSecPassWord, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="panel panel-default" style="border-right:0;border-left: 0">
+                                <div class="panel-heading">
+                                    <h4 style="text-transform: uppercase;">Thông tin cá nhân</h4>
+                                </div>
+                                <div class="panel-body" style="padding-left:0;padding-right:0">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4" for="cFullName">Họ và Tên:</label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.cFullName, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.cFullName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4" for="cEmail">Địa chỉ Email:</label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.cEmail, new { htmlAttributes = new { @class = "form-control", @type = "email" } })
+                                                @Html.ValidationMessageFor(model => model.cEmail, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4" for="cPhone">Số điện thoại:</label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.cPhone, new { htmlAttributes = new { @class = "form-control", @type = "phone" } })
+                                                @Html.ValidationMessageFor(model => model.cPhone, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-success">Đăng ký</button>
+                        </div>
+                        <!--<div class="col-sm-12">
+                            <p><a href="/account/register">Đăng ký tài khoản</a></p>
+                            <span><a href="/account/forgotpassword">Quên mật khẩu</a></span>
+                        </div>-->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+}

@@ -1,0 +1,48 @@
+﻿@model id.volam.club.Models.LoginModel
+
+@using (Html.BeginForm("login", "account", FormMethod.Post))
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="text-center">ĐĂNG NHẬP</h3>
+        </div>
+        <div class="panel-body">
+            <form class="" action="/account/login">
+                <div class="form-horizontal">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-12">
+                                <h4 class="text-center">
+                                    @Html.ValidationMessage("Error", new { @class = "text-danger" })
+                                    @Html.ValidationMessage("Success", new { @class = "text-success" })
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="cAccName">Tài khoản:</label>
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.cAccName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.cAccName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="cAccName">Mật khẩu:</label>
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.cPassWord, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.cPassWord, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <button type="submit" class="btn btn-success">Đăng nhập</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+}

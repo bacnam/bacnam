@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AccountModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'account_tong.dbo.AccCard_History' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AccCard_History">
+          <Key>
+            <PropertyRef Name="iid" />
+            <PropertyRef Name="cAccName" />
+            <PropertyRef Name="cCardCode" />
+            <PropertyRef Name="cCardPin" />
+            <PropertyRef Name="cCardType" />
+            <PropertyRef Name="nStatus" />
+            <PropertyRef Name="dDateTime" />
+            <PropertyRef Name="cIP" />
+          </Key>
+          <Property Name="iid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cAccName" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="cCardCode" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="cCardPin" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="cCardType" Type="smallint" Nullable="false" />
+          <Property Name="nStatus" Type="smallint" Nullable="false" />
+          <Property Name="dDateTime" Type="datetime" Nullable="false" />
+          <Property Name="cIP" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="iValue" Type="bit" />
+          <Property Name="iFlag" Type="bit" />
+          <Property Name="cDescription" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Account_Habitus">
+          <Key>
+            <PropertyRef Name="cAccName" />
+          </Key>
+          <Property Name="cAccName" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="iLeftSecond" Type="int" />
+          <Property Name="dEndDate" Type="datetime" Nullable="false" />
+          <Property Name="iUseSecond" Type="int" />
+        </EntityType>
+        <EntityType Name="Account_Info">
+          <Key>
+            <PropertyRef Name="cAccName" />
+            <PropertyRef Name="cEmail" />
+          </Key>
+          <Property Name="cAccName" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="cSecPassWord" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="cPassWord" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="cEmail" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="cFullName" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="cPhone" Type="varchar" MaxLength="20" />
+          <Property Name="iClientID" Type="bigint" />
+          <Property Name="dLoginDate" Type="datetime" />
+          <Property Name="dLogoutDate" Type="datetime" />
+          <Property Name="nExtPoint" Type="smallint" Nullable="false" />
+          <Property Name="nExtPoint1" Type="smallint" Nullable="false" />
+          <Property Name="nExtPoint2" Type="smallint" Nullable="false" />
+          <Property Name="nExtPoint3" Type="smallint" Nullable="false" />
+          <Property Name="nExtPoint4" Type="smallint" Nullable="false" />
+          <Property Name="nExtPoint5" Type="smallint" Nullable="false" />
+          <Property Name="nExtPoint6" Type="smallint" Nullable="false" />
+          <Property Name="nExtPoint7" Type="smallint" Nullable="false" />
+          <Property Name="nUserIP" Type="int" />
+          <Property Name="nUserIPPort" Type="int" />
+          <Property Name="nFeeType" Type="int" />
+          <Property Name="bParentalControl" Type="bit" Nullable="false" />
+          <Property Name="bIsBanned" Type="bit" Nullable="false" />
+          <Property Name="bIsUseOTP" Type="bit" Nullable="false" />
+          <Property Name="iOTPSessionLifeTime" Type="tinyint" Nullable="false" />
+          <Property Name="iServiceFlag" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="AccountModelStoreContainer">
+          <EntitySet Name="Account_Habitus" EntityType="Self.Account_Habitus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Account_Info" EntityType="Self.Account_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccCard_History" EntityType="Self.AccCard_History" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AccCard_History].[iid] AS [iid], 
+    [AccCard_History].[cAccName] AS [cAccName], 
+    [AccCard_History].[cCardCode] AS [cCardCode], 
+    [AccCard_History].[cCardPin] AS [cCardPin], 
+    [AccCard_History].[cCardType] AS [cCardType], 
+    [AccCard_History].[nStatus] AS [nStatus], 
+    [AccCard_History].[dDateTime] AS [dDateTime], 
+    [AccCard_History].[cIP] AS [cIP], 
+    [AccCard_History].[iValue] AS [iValue], 
+    [AccCard_History].[iFlag] AS [iFlag], 
+    [AccCard_History].[cDescription] AS [cDescription]
+    FROM [dbo].[AccCard_History] AS [AccCard_History]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AccountModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account_Habitus">
+          <Key>
+            <PropertyRef Name="cAccName" />
+          </Key>
+          <Property Name="cAccName" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="iLeftSecond" Type="Int32" />
+          <Property Name="dEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="iUseSecond" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Account_Info">
+          <Key>
+            <PropertyRef Name="cAccName" />
+            <PropertyRef Name="cEmail" />
+          </Key>
+          <Property Name="cAccName" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cSecPassWord" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cPassWord" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cEmail" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cFullName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="iClientID" Type="Int64" />
+          <Property Name="dLoginDate" Type="DateTime" Precision="3" />
+          <Property Name="dLogoutDate" Type="DateTime" Precision="3" />
+          <Property Name="nExtPoint" Type="Int16" Nullable="false" />
+          <Property Name="nExtPoint1" Type="Int16" Nullable="false" />
+          <Property Name="nExtPoint2" Type="Int16" Nullable="false" />
+          <Property Name="nExtPoint3" Type="Int16" Nullable="false" />
+          <Property Name="nExtPoint4" Type="Int16" Nullable="false" />
+          <Property Name="nExtPoint5" Type="Int16" Nullable="false" />
+          <Property Name="nExtPoint6" Type="Int16" Nullable="false" />
+          <Property Name="nExtPoint7" Type="Int16" Nullable="false" />
+          <Property Name="nUserIP" Type="Int32" />
+          <Property Name="nUserIPPort" Type="Int32" />
+          <Property Name="nFeeType" Type="Int32" />
+          <Property Name="bParentalControl" Type="Boolean" Nullable="false" />
+          <Property Name="bIsBanned" Type="Boolean" Nullable="false" />
+          <Property Name="bIsUseOTP" Type="Boolean" Nullable="false" />
+          <Property Name="iOTPSessionLifeTime" Type="Byte" Nullable="false" />
+          <Property Name="iServiceFlag" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccCard_History">
+          <Key>
+            <PropertyRef Name="iid" />
+            <PropertyRef Name="cAccName" />
+            <PropertyRef Name="cCardCode" />
+            <PropertyRef Name="cCardPin" />
+            <PropertyRef Name="cCardType" />
+            <PropertyRef Name="nStatus" />
+            <PropertyRef Name="dDateTime" />
+            <PropertyRef Name="cIP" />
+          </Key>
+          <Property Name="iid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cAccName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cCardCode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cCardPin" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cCardType" Type="Int16" Nullable="false" />
+          <Property Name="nStatus" Type="Int16" Nullable="false" />
+          <Property Name="dDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cIP" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="iValue" Type="Boolean" />
+          <Property Name="iFlag" Type="Boolean" />
+          <Property Name="cDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="AccountEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Account_Habitus" EntityType="Self.Account_Habitus" />
+          <EntitySet Name="Account_Info" EntityType="Self.Account_Info" />
+          <EntitySet Name="AccCard_History" EntityType="Self.AccCard_History" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AccountModelStoreContainer" CdmEntityContainer="AccountEntities">
+          <EntitySetMapping Name="Account_Habitus">
+            <EntityTypeMapping TypeName="AccountModel.Account_Habitus">
+              <MappingFragment StoreEntitySet="Account_Habitus">
+                <ScalarProperty Name="cAccName" ColumnName="cAccName" />
+                <ScalarProperty Name="iLeftSecond" ColumnName="iLeftSecond" />
+                <ScalarProperty Name="dEndDate" ColumnName="dEndDate" />
+                <ScalarProperty Name="iUseSecond" ColumnName="iUseSecond" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Account_Info">
+            <EntityTypeMapping TypeName="AccountModel.Account_Info">
+              <MappingFragment StoreEntitySet="Account_Info">
+                <ScalarProperty Name="cAccName" ColumnName="cAccName" />
+                <ScalarProperty Name="cSecPassWord" ColumnName="cSecPassWord" />
+                <ScalarProperty Name="cPassWord" ColumnName="cPassWord" />
+                <ScalarProperty Name="cEmail" ColumnName="cEmail" />
+                <ScalarProperty Name="cFullName" ColumnName="cFullName" />
+                <ScalarProperty Name="cPhone" ColumnName="cPhone" />
+                <ScalarProperty Name="iClientID" ColumnName="iClientID" />
+                <ScalarProperty Name="dLoginDate" ColumnName="dLoginDate" />
+                <ScalarProperty Name="dLogoutDate" ColumnName="dLogoutDate" />
+                <ScalarProperty Name="nExtPoint" ColumnName="nExtPoint" />
+                <ScalarProperty Name="nExtPoint1" ColumnName="nExtPoint1" />
+                <ScalarProperty Name="nExtPoint2" ColumnName="nExtPoint2" />
+                <ScalarProperty Name="nExtPoint3" ColumnName="nExtPoint3" />
+                <ScalarProperty Name="nExtPoint4" ColumnName="nExtPoint4" />
+                <ScalarProperty Name="nExtPoint5" ColumnName="nExtPoint5" />
+                <ScalarProperty Name="nExtPoint6" ColumnName="nExtPoint6" />
+                <ScalarProperty Name="nExtPoint7" ColumnName="nExtPoint7" />
+                <ScalarProperty Name="nUserIP" ColumnName="nUserIP" />
+                <ScalarProperty Name="nUserIPPort" ColumnName="nUserIPPort" />
+                <ScalarProperty Name="nFeeType" ColumnName="nFeeType" />
+                <ScalarProperty Name="bParentalControl" ColumnName="bParentalControl" />
+                <ScalarProperty Name="bIsBanned" ColumnName="bIsBanned" />
+                <ScalarProperty Name="bIsUseOTP" ColumnName="bIsUseOTP" />
+                <ScalarProperty Name="iOTPSessionLifeTime" ColumnName="iOTPSessionLifeTime" />
+                <ScalarProperty Name="iServiceFlag" ColumnName="iServiceFlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccCard_History">
+            <EntityTypeMapping TypeName="AccountModel.AccCard_History">
+              <MappingFragment StoreEntitySet="AccCard_History">
+                <ScalarProperty Name="iid" ColumnName="iid" />
+                <ScalarProperty Name="cAccName" ColumnName="cAccName" />
+                <ScalarProperty Name="cCardCode" ColumnName="cCardCode" />
+                <ScalarProperty Name="cCardPin" ColumnName="cCardPin" />
+                <ScalarProperty Name="cCardType" ColumnName="cCardType" />
+                <ScalarProperty Name="nStatus" ColumnName="nStatus" />
+                <ScalarProperty Name="dDateTime" ColumnName="dDateTime" />
+                <ScalarProperty Name="cIP" ColumnName="cIP" />
+                <ScalarProperty Name="iValue" ColumnName="iValue" />
+                <ScalarProperty Name="iFlag" ColumnName="iFlag" />
+                <ScalarProperty Name="cDescription" ColumnName="cDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
